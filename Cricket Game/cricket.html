@@ -1,119 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cricket</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cricket</title>
+    <style>
+      body {
+        text-align: center;
+      }
+    </style>
+  </head>
 
-  <style>
-    body {
-      text-align: center;
-    }
-  </style>
-</head>
+  <body>
+    <h2>Bat Ball Stump Game</h2>
 
-<body>
-  <h2>Bat Ball Stump Game</h2>
-
-  <button class="bat" onclick="
+    <button class="bat"
+      onclick="
   //user choice
-  const userChoiceMSg='You have choosen Bat';
+  const userChoice='Bat';
+  const userChoiceMSg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   let computerChoice=generateComputerChoice();
   let computerChoiceMsg=`Computer choose ${computerChoice}`;
-
-  //decision or result :
-  let resultMsg;
-  if(computerChoice==='Ball'){
-    resultMsg='User won.'
-  }
-  else if(computerChoice==='Bat'){
-    // console.log(`It's a Tie`); //we can not use douvle qoutes here becuase we already inside the onclick double qoutes
-    resultMsg=`It's a Tie`;
-  }
-  else if(computerChoice==='Stump'){
-    resultMsg='Computer won.';
-  }
+  
+  //result :
+  const resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
+  showResult(userChoice,computerChoice,resultMsg);
+  "
+    >Bat</button>
 
-  ">Bat</button>
 
-
-  <button class="ball" onclick="
+    <button class="ball"
+      onclick="
   //user choice
-  userChoiceMSg='You have choosen Ball'; 
+  userChoice='Ball';
+  userChoiceMSg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   computerChoice=generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
-  //decision or result :
-  
-  if(computerChoice==='Stump'){
-    resultMsg='User won.'
-  }
-  else if(computerChoice==='Ball'){
-    // console.log(`It's a Tie`); //we can not use douvle qoutes here becuase we already inside the onclick double qoutes
-    resultMsg=`It's a Tie`;
-  }
-  else if(computerChoice==='Bat'){
-    resultMsg='Computer won.';
-  }
+  //result :
+  resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
+  showResult(userChoice,computerChoice,resultMsg);
   
-  ">Ball</button>
+  "
+    >Ball</button>
 
 
-  <button class="stump" onclick="
+    <button class="stump"
+      onclick="
   //user choice
-  userChoiceMSg='You have choosen Stump';
+  userChoice='Stump';
+  userChoiceMSg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   computerChoice=generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
-  //decision or result :
-  if(computerChoice==='Bat'){
-    resultMsg='User won.'
-  }
-  else if(computerChoice==='Stump'){
-    // console.log(`It's a Tie`); //we can not use douvle qoutes here becuase we already inside the onclick double qoutes
-    resultMsg=`It's a Tie`;
-  }
-  else if(computerChoice==='Ball'){
-    resultMsg='Computer won.';
-  }
+  //result :
+  resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
-  
-  ">Stump</button>
+  showResult(userChoice,computerChoice,resultMsg);
+  "
+    >Stump</button>
 
-  <script>
-    function generateComputerChoice() {
-      //computer choice mechanism
-      let computerChoice; //here it is local or functional vairbale for that reason we will create the new variable on the functional call side.
-      let randomNum = Math.ceil(Math.random() * 3); //generate randome number from 1 to 3
+    <script>
+      function generateComputerChoice() {
+        //computer choice mechanism
+        let computerChoice; //here it is local or functional vairbale for that reason we will create the new variable on the functional call side.
+        let randomNum = Math.ceil(Math.random() * 3); //generate randome number from 1 to 3
 
-      if (randomNum === 1) {
-        computerChoice = 'Bat';
+        if (randomNum === 1) {
+          computerChoice = "Bat";
+        } else if (randomNum === 2) {
+          computerChoice = "Ball";
+        } else {
+          computerChoice = "Stump";
+        }
+        return computerChoice;
       }
-      else if (randomNum === 2) {
-        computerChoice = 'Ball';;
-      }
-      else {
-        computerChoice = 'Stump';
-      } 
-      return computerChoice;
-    }
-   
-  </script>
-</body>
 
+      //for decision or result :
+
+      function getResult(userMove, ComputerMove) {
+        //decision or result :
+        let resultMsg;
+        
+        if(userMove===ComputerMove){
+          resultMsg='It is a tie';
+        }
+        else if(userMove==='Bat'){
+          if(ComputerMove==='Ball'){
+            resultMsg='User won'
+          }else if(ComputerMove==='Wicket'){
+            resultMsg='Computer won';
+          }else{
+            resultMsg='It is a tie'; //not required becuase we check first if condition but for backup we will use this.
+          }
+        }
+        else if(userMove==='Ball'){
+          if(ComputerMove==='Bat'){
+            resultMsg='Computer won'
+          }else if(ComputerMove==='Wicket'){
+            resultMsg='User won';
+          }else{
+            resultMsg='It is a tie';
+          }
+        }
+        else{
+          if(ComputerMove==='Ball'){
+            resultMsg='Computer won'
+          }else if(ComputerMove==='Bat'){
+            resultMsg='User won';
+          }else{
+            resultMsg='It is a tie';
+          }
+        }
+
+        return resultMsg;
+        
+      }
+
+      //alert pop up :
+
+      function showResult(userMove,ComputerMove,resultMsg){
+        alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
+      }
+    </script>
+  </body>
 </html>
