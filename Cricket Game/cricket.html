@@ -19,7 +19,7 @@
       onclick="
   //user choice
   const userChoice='Bat';
-  const userChoiceMSg=`You have choosen ${userChoice}`;
+  const userChoiceMsg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   let computerChoice=generateComputerChoice();
@@ -29,7 +29,7 @@
   const resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  showResult(userChoice,computerChoice,resultMsg);
+  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   "
     >Bat</button>
 
@@ -38,7 +38,7 @@
       onclick="
   //user choice
   userChoice='Ball';
-  userChoiceMSg=`You have choosen ${userChoice}`;
+  userChoiceMsg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   computerChoice=generateComputerChoice();
@@ -48,7 +48,7 @@
   resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  showResult(userChoice,computerChoice,resultMsg);
+  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   
   "
     >Ball</button>
@@ -58,7 +58,7 @@
       onclick="
   //user choice
   userChoice='Stump';
-  userChoiceMSg=`You have choosen ${userChoice}`;
+  userChoiceMsg=`You have choosen ${userChoice}`;
 
   //computer choice mechanism
   computerChoice=generateComputerChoice();
@@ -68,11 +68,21 @@
   resultMsg=getResult(userChoice,computerChoice);
 
   //popup :
-  showResult(userChoice,computerChoice,resultMsg);
+  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   "
     >Stump</button>
 
     <script>
+      //objects :
+      let userScore={
+        win:0,
+        lost:0,
+        tie:0,
+      }
+
+
+      //methods :
+
       function generateComputerChoice() {
         //computer choice mechanism
         let computerChoice; //here it is local or functional vairbale for that reason we will create the new variable on the functional call side.
@@ -96,32 +106,43 @@
         
         if(userMove===ComputerMove){
           resultMsg='It is a tie';
+          userScore.tie++;
         }
         else if(userMove==='Bat'){
           if(ComputerMove==='Ball'){
             resultMsg='User won'
+            userScore.win++;
+            
           }else if(ComputerMove==='Wicket'){
             resultMsg='Computer won';
+            userScore.lost++;
           }else{
             resultMsg='It is a tie'; //not required becuase we check first if condition but for backup we will use this.
+            userScore.tie++;
           }
         }
         else if(userMove==='Ball'){
           if(ComputerMove==='Bat'){
-            resultMsg='Computer won'
+            resultMsg='Computer won';
+            userScore.lost++;
           }else if(ComputerMove==='Wicket'){
             resultMsg='User won';
+            userScore.win++;
           }else{
             resultMsg='It is a tie';
+            userScore.tie++;
           }
         }
         else{
           if(ComputerMove==='Ball'){
-            resultMsg='Computer won'
+            resultMsg='Computer won';
+            userScore.lost++;
           }else if(ComputerMove==='Bat'){
             resultMsg='User won';
+            userScore.win++;
           }else{
             resultMsg='It is a tie';
+            userScore.tie++;
           }
         }
 
@@ -132,7 +153,12 @@
       //alert pop up :
 
       function showResult(userMove,ComputerMove,resultMsg){
-        alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
+        alert(`${userMove} , ${ComputerMove} 
+         
+        ${resultMsg}
+        
+        Won:${userScore.win} , Lost:${userScore.lost} , Tie:${userScore.tie}
+        `); //if we refresh the page then it reset the score we can store in local storage in future.
       }
     </script>
   </body>
