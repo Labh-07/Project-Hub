@@ -1,35 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cricket</title>
 
   <style>
-    body{
+    body {
       text-align: center;
     }
   </style>
 </head>
+
 <body>
   <h2>Bat Ball Stump Game</h2>
- 
+
   <button class="bat" onclick="
   //user choice
   const userChoiceMSg='You have choosen Bat';
 
   //computer choice mechanism
-  let randomNum=Math.ceil(Math.random()*3); //generate randome number from 1 to 3
-  let computerChoice;
-  if(randomNum===1){
-    computerChoice='Bat';
-  }
-  else if(randomNum===2){
-    computerChoice='Ball';;
-  }
-  else{
-    computerChoice='Stump';
-  }
+  generateComputerChoice();
   let computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -51,25 +43,12 @@
   ">Bat</button>
 
 
-
-
-
   <button class="ball" onclick="
   //user choice
   userChoiceMSg='You have choosen Ball'; 
 
   //computer choice mechanism
-  randomNum=Math.ceil(Math.random()*3); //generate randome number from 1 to 3
-  // let computerChoice;//we do not need to declare second time with let becuase we alredy defined in previous onclick
-  if(randomNum===1){
-    computerChoice='Bat';
-  }
-  else if(randomNum===2){
-    computerChoice='Ball';;
-  }
-  else{
-    computerChoice='Stump';
-  }
+  generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -91,23 +70,12 @@
   ">Ball</button>
 
 
-
   <button class="stump" onclick="
   //user choice
   userChoiceMSg='You have choosen Stump';
 
   //computer choice mechanism
-  randomNum=Math.ceil(Math.random()*3); //generate randome number from 1 to 3
-
-  if(randomNum===1){
-    computerChoice='Bat';
-  }
-  else if(randomNum===2){
-    computerChoice='Ball';;
-  }
-  else{
-    computerChoice='Stump';
-  }
+  generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -126,5 +94,24 @@
   alert(`${userChoiceMSg} , ${computerChoiceMsg} , ${resultMsg}`);
   
   ">Stump</button>
+
+  <script>
+    let computerChoice;
+    function generateComputerChoice() {
+      //computer choice mechanism
+      let randomNum = Math.ceil(Math.random() * 3); //generate randome number from 1 to 3
+
+      if (randomNum === 1) {
+        computerChoice = 'Bat';
+      }
+      else if (randomNum === 2) {
+        computerChoice = 'Ball';;
+      }
+      else {
+        computerChoice = 'Stump';
+      }
+    }
+  </script>
 </body>
+
 </html>
