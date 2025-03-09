@@ -21,7 +21,7 @@
   const userChoiceMSg='You have choosen Bat';
 
   //computer choice mechanism
-  generateComputerChoice();
+  let computerChoice=generateComputerChoice();
   let computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -48,7 +48,7 @@
   userChoiceMSg='You have choosen Ball'; 
 
   //computer choice mechanism
-  generateComputerChoice();
+  computerChoice=generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -75,7 +75,7 @@
   userChoiceMSg='You have choosen Stump';
 
   //computer choice mechanism
-  generateComputerChoice();
+  computerChoice=generateComputerChoice();
   computerChoiceMsg=`Computer choose ${computerChoice}`;
 
   //decision or result :
@@ -96,9 +96,9 @@
   ">Stump</button>
 
   <script>
-    let computerChoice;
     function generateComputerChoice() {
       //computer choice mechanism
+      let computerChoice; //here it is local or functional vairbale for that reason we will create the new variable on the functional call side.
       let randomNum = Math.ceil(Math.random() * 3); //generate randome number from 1 to 3
 
       if (randomNum === 1) {
@@ -109,8 +109,10 @@
       }
       else {
         computerChoice = 'Stump';
-      }
+      } 
+      return computerChoice;
     }
+   
   </script>
 </body>
 
