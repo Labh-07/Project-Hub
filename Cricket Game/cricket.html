@@ -72,16 +72,36 @@
   "
     >Stump</button>
 
+    <button onclick="
+    localStorage.clear();
+    resetScore();
+    ">Reset</button>
+
     <script>
       //objects :Encapsulate all the things in object
-      let userScore={
-        win:0,
-        lost:0,
-        tie:0,
-        displayScore:function(){
+      let userScoreStr=localStorage.getItem('userScore');
+      // let userScore;
+      // if(userScoreStr != undefined){
+      //   userScore=JSON.parse(userScoreStr);
+      // }
+      // else{
+      //   userScore={
+      //     win:0,
+      //     lost:0,
+      //     tie:0,
+      //   };
+      // }
+
+      //shprt trick to define by Guard operator :
+      let userScore=JSON.parse(userScoreStr) || { //if JSON.parse(userScore) undefined then by defualt value assign
+           win:0,
+           lost:0,
+           tie:0,
+         };
+
+      userScore.displayScore = function(){
           return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
         }
-      }
 
 
       //methods :
@@ -149,6 +169,9 @@
           }
         }
 
+        //here we update the score so we store in local storage :
+        localStorage.setItem('userScore',JSON.stringify(userScore));
+
         return resultMsg;
         
       }
@@ -162,6 +185,19 @@
         
         ${userScore.displayScore()};
         `); //if we refresh the page then it reset the score we can store in local storage in future.
+      }
+
+      //reset function :
+      function resetScore(){
+        userScore={
+          win:0,
+          lost:0,
+          tie:0,
+        };
+
+        userScore.displayScore = function(){
+          return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
+        }
       }
     </script>
   </body>
