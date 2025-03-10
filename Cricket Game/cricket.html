@@ -73,11 +73,14 @@
     >Stump</button>
 
     <script>
-      //objects :
+      //objects :Encapsulate all the things in object
       let userScore={
         win:0,
         lost:0,
         tie:0,
+        displayScore:function(){
+          return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
+        }
       }
 
 
@@ -157,7 +160,7 @@
          
         ${resultMsg}
         
-        Won:${userScore.win} , Lost:${userScore.lost} , Tie:${userScore.tie}
+        ${userScore.displayScore()};
         `); //if we refresh the page then it reset the score we can store in local storage in future.
       }
     </script>
