@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cricket</title>
 
-    <style>
-      body {
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="/projects/Cricket Game/cricket.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Spicy+Rice&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
-    <h2>Bat Ball Stump Game</h2>
+    <h2 class="heading">Bat Ball Stump Game</h2>
 
-    <button class="bat"
+    
+    <button class="bat choice-button"
       onclick="
   //user choice
   const userChoice='Bat';
@@ -31,10 +33,13 @@
   //popup :
   showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   "
-    >Bat</button>
+    >
+    <img src="images/Bat.png" class="choice-image" alt="Bat image" >
+  </button>
 
 
-    <button class="ball"
+
+    <button class="ball choice-button"
       onclick="
   //user choice
   userChoice='Ball';
@@ -51,10 +56,13 @@
   showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   
   "
-    >Ball</button>
+    >
+    <img src="images/Ball.png" class="choice-image" alt="Ball image" >
+  </button>
 
+    
 
-    <button class="stump"
+    <button class="stump choice-button"
       onclick="
   //user choice
   userChoice='Stump';
@@ -70,13 +78,24 @@
   //popup :
   showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
   "
-    >Stump</button>
+    >
+    <img src="images/stump.png" class="choice-image" alt="Stump image" >
+  </button>
 
-    <button onclick="
+    
+
+    <!--Result show :-->
+    <div class="result-container">
+    <h3 id="user-move"></h3>
+    <h3 id="computer-move"></h3>
+    <h3 id="result"></h3>
+    <h3 id="score"></h3>
+    </div>
+
+    <button class="reset-button" onclick="
     localStorage.clear();
     resetScore();
     ">Reset</button>
-
     <script>
       //objects :Encapsulate all the things in object
       let userScoreStr=localStorage.getItem('userScore');
@@ -179,12 +198,11 @@
       //alert pop up :
 
       function showResult(userMove,ComputerMove,resultMsg){
-        alert(`${userMove} , ${ComputerMove} 
-         
-        ${resultMsg}
-        
-        ${userScore.displayScore()};
-        `); //if we refresh the page then it reset the score we can store in local storage in future.
+
+        document.querySelector('#user-move').innerText=userMove||''; //in case of userMove undefined we show blank string (for reset button)
+        document.querySelector('#computer-move').innerText=ComputerMove||'';
+        document.querySelector('#result').innerText=resultMsg||'';
+        document.querySelector('#score').innerText=userScore.displayScore();
       }
 
       //reset function :
@@ -194,10 +212,12 @@
           lost:0,
           tie:0,
         };
-
+        
         userScore.displayScore = function(){
           return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
         }
+
+        showResult(); //here we need to pass userMove , ComputerMove and resultMsg but we dont pass so we handle this in showResult() method
       }
     </script>
   </body>
