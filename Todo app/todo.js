@@ -1,5 +1,9 @@
 //global structure :
-let todoList=['Buy Milk','Go to college'];
+let todoList=[
+    {item:'Buy Milk',dueDate:'11/3/2025',},
+    {item:'Go to college',dueDate:'11/3/2025',}
+
+];
 displayItems(); //for starting display
 
 
@@ -8,9 +12,15 @@ displayItems(); //for starting display
 
 function addTodo(){
     let inputEelemnt=document.querySelector('#todo-input');
+    let dateElement=document.querySelector('#todo-date');
+
     let todoItem=inputEelemnt.value;
-    todoList.push(todoItem);
+    let todoDate=dateElement.value;
+
+    todoList.push({item:todoItem,dueDate:todoDate});
+   
     inputEelemnt.value=''; //after push input empty
+    dateElement.value=''; 
 
     displayItems();
 }
@@ -22,9 +32,11 @@ function displayItems(){
 
 
     for(let i=0 ; i<todoList.length ; i++){
+        let {item,dueDate}=todoList[i]; //destructuring
         newHtml += `
         <div>
-        <span>${todoList[i]}</span>
+        <span>${item}</span>
+        <span>${dueDate}</span>
         <button onclick="
         todoList.splice(${i},1);
         displayItems();">Delete</button>
