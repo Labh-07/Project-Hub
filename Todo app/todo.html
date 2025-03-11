@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo app</title>
+    <title>Document</title>
     <link rel="stylesheet" href="todo.css">
-
 </head>
 <body>
     
- <h2 id="main-heading">Todo App</h2>
-    <div class="grid-container">
-    <input id="todo-input" type="text"  placeholder="Enter TODO here">
-    <input id="todo-date" type="date">
-    <button class="btn-add" onclick="addTodo();">Add</button>
+    <h2 id="todo-heading">Todo App</h2>
+
+    <div class="todo-grid">
+    <input id="todo-input" type="text" placeholder="Enter the Task"></input>
+    <input id="todo-date" type="date"></input>
+    <button id="todo-add" onclick=" addTask();">Add</button>
     </div>
 
-    <div class="todo-container grid-container"></div>
-
+    
+    <div class="todo-list todo-grid"></div>
     <script src="todo.js"></script>
 </body>
 </html>
