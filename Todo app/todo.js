@@ -34,13 +34,11 @@ function displayItems(){
     for(let i=0 ; i<todoList.length ; i++){
         let {item,dueDate}=todoList[i]; //destructuring
         newHtml += `
-        <div>
         <span>${item}</span>
         <span>${dueDate}</span>
-        <button onclick="
+        <button class="btn-delete" onclick="
         todoList.splice(${i},1);
         displayItems();">Delete</button>
-        </div>
         `; //here we write the ${i} becuase we are in backtik and we need to pass this loop i value in html
     }
 
