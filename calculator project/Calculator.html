@@ -1,65 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <link rel="stylesheet" href="/Chapter 4/Practice/calculator project/Calculator.css">
-</head>
-<body>
-  <div id="calculator">
-    <input type="text" id="display" readonly> <!--with readonly user can not type in the display section-->
-    
-    <div class="button-container">
-      <button class="button" onclick="currentDisplay=''
-      document.querySelector('#display').value=currentDisplay;">c</button> <!--diffrent logic-->
-      <button class="button" onclick="currentDisplay+='1'
-      document.querySelector('#display').value=currentDisplay;">1</button>
-      <button class="button" onclick="currentDisplay+='2'
-      document.querySelector('#display').value=currentDisplay;">2</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Labh Calculator</title>
+    <link rel="stylesheet" href="./calculator.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="calculator">
+        <input class="display" type="text" readonly />
+        <div class="buttons-container">
+          <div class="button" onClick="updateDisplay('c')">c</div>
+          <div class="button" onClick="updateDisplay('1')">1</div>
+          <div class="button" onClick="updateDisplay('2')">2</div>
+          <div class="button" onClick="updateDisplay('+')">+</div>
+          <div class="button" onClick="updateDisplay('3')">3</div>
+          <div class="button" onClick="updateDisplay('4')">4</div>
+          <div class="button" onClick="updateDisplay('-')">-</div>
+          <div class="button" onClick="updateDisplay('5')">5</div>
+          <div class="button" onClick="updateDisplay('6')">6</div>
+          <div class="button" onClick="updateDisplay('*')">*</div>
+          <div class="button" onClick="updateDisplay('7')">7</div>
+          <div class="button" onClick="updateDisplay('8')">8</div>
+          <div class="button" onClick="updateDisplay('/')">/</div>
+          <div class="button" onClick="updateDisplay('=')">=</div>
+          <div class="button" onClick="updateDisplay('9')">9</div>
+          <div class="button" onClick="updateDisplay('0')">0</div>
+          <div class="button" onClick="updateDisplay('.')">.</div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
 
-      <button class="button" onclick="currentDisplay+='+'
-      document.querySelector('#display').value=currentDisplay;">+</button>
-      <button class="button" onclick="currentDisplay+='3'
-      document.querySelector('#display').value=currentDisplay;">3</button>
-      <button class="button" onclick="currentDisplay+='4'
-      document.querySelector('#display').value=currentDisplay;">4</button>
+    <script>
+      let display = "";
 
-      <button class="button" onclick="currentDisplay+='-'
-      document.querySelector('#display').value=currentDisplay;">-</button>
-      <button class="button" onclick="currentDisplay+='5'
-      document.querySelector('#display').value=currentDisplay;">5</button>
-      <button class="button" onclick="currentDisplay+='6'
-      document.querySelector('#display').value=currentDisplay;">6</button>
+      function updateDisplay(inputSymbol) {
+        let inputDisplay = document.querySelector(".display");
+        if (inputSymbol === "c") {
+          display = "";
+        } else if (inputSymbol === "=") {
+          display = eval(display);
+        } else {
+          display += inputSymbol;
+        }
 
-      <button class="button" onclick="currentDisplay+='*'
-      document.querySelector('#display').value=currentDisplay;">*</button>
-      <button class="button" onclick="currentDisplay+='7'
-      document.querySelector('#display').value=currentDisplay;">7</button>
-      <button class="button" onclick="currentDisplay+='8'
-      document.querySelector('#display').value=currentDisplay;">8</button>
-
-      <button class="button" onclick="currentDisplay+='/'
-      document.querySelector('#display').value=currentDisplay;">/</button>
-
-      <button class="button" onclick="
-     currentDisplay=eval(currentDisplay); document.querySelector('#display').value=currentDisplay;">=</button>  <!--diffrent logic-->
-
-      <button class="button" onclick="currentDisplay+='9'
-      document.querySelector('#display').value=currentDisplay;">9</button>
-
-      <button class="button" onclick="currentDisplay+='0'
-      document.querySelector('#display').value=currentDisplay;">0</button>
-      <button class="button" onclick="currentDisplay+='.'
-      document.querySelector('#display').value=currentDisplay;">.</button>
-    </div>
-  </div>
-  
-  <script>
-      let currentDisplay='';
-      document.querySelector('#display').value=currentDisplay; //for normal divs and pragraph we will use .innerText and for input we use value becuase display not have a any text
-
-
+        inputDisplay.value = display;
+      }
     </script>
-</body>
+  </body>
 </html>
