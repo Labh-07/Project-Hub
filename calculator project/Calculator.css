@@ -1,34 +1,68 @@
-#calculator{
-  border:2px solid #bbb7b7;
-  border-radius:5px;
-  width:200px;
-  position: absolute;
-  top:30%;
-  left:43%;
+.calculator{
+    height: 40vw;
+    width: 22vw;
+    min-height: 500px;
+    min-width: 300px;
+    margin:5px;
+
+    border:2px solid rgb(145, 145, 145);
+    border-radius:7px;
+
+    position: absolute;
+    top:10%;
+    left:38%;
 }
 
-#display{
-  margin:10px;
-  width:88%;
-  font-size: 25px;
-  border:1px solid #bbb7b7;
-  border-radius: 5px;
+.display{
+    height:8%;
+    width:80%;
+    margin:4% 8%; 
+
+    border:2px solid rgb(215, 215, 215);
+    border-radius:3px;
+
+    font-size: 20px;
 }
 
-.button-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap:wrap;
+.buttons-container{
+    background-color: rgb(255, 255, 255);
+    height:85%;
+    width:82%;
+    margin:0% 8%; 
+    margin-bottom: 8%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .button{
-  width:45px;
-  height:45px;
-  margin:3px;
-  transition:all 0.1s ease-in-out;
+    background-color: rgb(255, 255, 255);
+    height: 13%;
+    width: 24%;
+    min-height:55px;
+    min-width:55px;
+    margin:5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border:1.5px solid rgb(196, 196, 196);
+    border-radius: 7px;
+
+    cursor: pointer;
+     transition: box-shadow 0.3s ease;
 }
 
 .button:hover{
-  transform: scale(1.03);
+    transform: scale(1.02);
+    border:1.5px solid rgb(116, 199, 255);
+
+     box-shadow: 0 2px 4px rgba(193, 193, 193, 0.8);
+}
+
+.button:active{
+    transform: scale(1.01);
 }
