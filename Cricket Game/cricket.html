@@ -3,221 +3,159 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cricket</title>
-
-    <link rel="stylesheet" href="/projects/Cricket Game/cricket.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&family=Spicy+Rice&display=swap" rel="stylesheet">
-
+    <title>Bat Ball Game</title>
+    <link rel="stylesheet" href="./BatBallGame.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=restart_alt"
+    />
   </head>
-
   <body>
-    <h2 class="heading">Bat Ball Stump Game</h2>
+    <div class="game">
+      <div class="heading">
+        <p>Cricket Game</p>
+      </div>
+      <div class="user-choice">
+        <button class="user-button" onclick="playGame('BAT')">BAT</button>
+        <button class="user-button" onclick="playGame('BALL')">BALL</button>
+        <button class="user-button" onclick="playGame('STUMP')">STUMP</button>
+      </div>
+      <div class="display">
+        <span class="restart-game" onClick="restartScore()">
+          <span class="material-symbols-outlined"> restart_alt </span>
+        </span>
+        <div class="score-board">
+          <p class="score"></p>
+        </div>
 
-    
-    <button class="bat choice-button"
-      onclick="
-  //user choice
-  const userChoice='Bat';
-  const userChoiceMsg=`You have choosen ${userChoice}`;
-
-  //computer choice mechanism
-  let computerChoice=generateComputerChoice();
-  let computerChoiceMsg=`Computer choose ${computerChoice}`;
-  
-  //result :
-  const resultMsg=getResult(userChoice,computerChoice);
-
-  //popup :
-  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
-  "
-    >
-    <img src="images/Bat.png" class="choice-image" alt="Bat image" >
-  </button>
-
-
-
-    <button class="ball choice-button"
-      onclick="
-  //user choice
-  userChoice='Ball';
-  userChoiceMsg=`You have choosen ${userChoice}`;
-
-  //computer choice mechanism
-  computerChoice=generateComputerChoice();
-  computerChoiceMsg=`Computer choose ${computerChoice}`;
-
-  //result :
-  resultMsg=getResult(userChoice,computerChoice);
-
-  //popup :
-  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
-  
-  "
-    >
-    <img src="images/Ball.png" class="choice-image" alt="Ball image" >
-  </button>
-
-    
-
-    <button class="stump choice-button"
-      onclick="
-  //user choice
-  userChoice='Stump';
-  userChoiceMsg=`You have choosen ${userChoice}`;
-
-  //computer choice mechanism
-  computerChoice=generateComputerChoice();
-  computerChoiceMsg=`Computer choose ${computerChoice}`;
-
-  //result :
-  resultMsg=getResult(userChoice,computerChoice);
-
-  //popup :
-  showResult(userChoiceMsg,computerChoiceMsg,resultMsg);
-  "
-    >
-    <img src="images/stump.png" class="choice-image" alt="Stump image" >
-  </button>
-
-    
-
-    <!--Result show :-->
-    <div class="result-container">
-    <h3 id="user-move"></h3>
-    <h3 id="computer-move"></h3>
-    <h3 id="result"></h3>
-    <h3 id="score"></h3>
+        <p class="move">
+          <span class="user-move"></span><span class="computer-move"></span>
+        </p>
+        <p class="result"></p>
+      </div>
     </div>
 
-    <button class="reset-button" onclick="
-    localStorage.clear();
-    resetScore();
-    ">Reset</button>
     <script>
-      //objects :Encapsulate all the things in object
-      let userScoreStr=localStorage.getItem('userScore');
-      // let userScore;
-      // if(userScoreStr != undefined){
-      //   userScore=JSON.parse(userScoreStr);
-      // }
-      // else{
-      //   userScore={
-      //     win:0,
-      //     lost:0,
-      //     tie:0,
-      //   };
-      // }
+      let score = JSON.parse(localStorage.getItem("score")) || {
+        WIN: 0,
+        LOST: 0,
+        TIE: 0,
+      };
 
-      //shprt trick to define by Guard operator :
-      let userScore=JSON.parse(userScoreStr) || { //if JSON.parse(userScore) undefined then by defualt value assign
-           win:0,
-           lost:0,
-           tie:0,
-         };
+      score.dispayScore = () => {
+        localStorage.setItem("score", JSON.stringify(score));
+        return `WIN : ${score.WIN || 0} \n LOST : ${
+          score.LOST || 0
+        } \n TIE  : ${score.TIE || 0}`;
+      };
 
-      userScore.displayScore = function(){
-          return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
-        }
+      function restartScore() {
+        // console.log("restart score called");
+        score.WIN = 0;
+        score.LOST = 0;
+        score.TIE = 0;
+        dispalyDecision();
+        displayMove();
+        score.dispayScore();
+        localStorage.clear();
+      }
 
-
-      //methods :
+      dispalyDecision();
+      score.dispayScore();
 
       function generateComputerChoice() {
-        //computer choice mechanism
-        let computerChoice; //here it is local or functional vairbale for that reason we will create the new variable on the functional call side.
-        let randomNum = Math.ceil(Math.random() * 3); //generate randome number from 1 to 3
+        let choiceNum = Math.ceil(Math.random() * 3);
+        let choice;
 
-        if (randomNum === 1) {
-          computerChoice = "Bat";
-        } else if (randomNum === 2) {
-          computerChoice = "Ball";
+        if (choiceNum === 1) {
+          choice = "BAT";
+        } else if (choiceNum === 2) {
+          choice = "BALL";
+        } else if (choiceNum === 3) {
+          choice = "STUMP";
+        }
+
+        return choice;
+      }
+
+      function playGame(userChoice) {
+        const computerChoice = generateComputerChoice();
+
+        const decision = makeDecision(userChoice, computerChoice);
+        // console.log(decision);
+        dispalyDecision(decision);
+      }
+
+      function dispalyDecision(decision) {
+        let resultBoard = document.querySelector(".result");
+        resultBoard.innerText = decision || "Let's play Game :)";
+        // console.log(resultBoard.innerTEXT);
+        let scoreBoard = document.querySelector(".score");
+        scoreBoard.innerText = score.dispayScore();
+      }
+
+      function displayMove(userMove, computerMove) {
+        //display move:
+        let userMoveElement = document.querySelector(".user-move");
+        let pcMoveElement = document.querySelector(".computer-move");
+        userMoveElement.innerText = userMove ? `YOUR MOVE \n ${userMove}` : "";
+        pcMoveElement.innerText = computerMove
+          ? `PC MOVE \n${computerMove}`
+          : "";
+      }
+
+      function makeDecision(userChoice, computerChoice) {
+        let decision;
+        displayMove(userChoice, computerChoice);
+        if (userChoice === computerChoice) {
+          decision = "Tie !";
+          score.TIE++;
+        } else if (userChoice === "BAT") {
+          switch (computerChoice) {
+            case "BALL":
+              decision = "Won :)";
+              score.WIN++;
+              break;
+            case "STUMP":
+              decision = "Lost !!";
+              score.LOST++;
+              break;
+            default:
+              decision = "something went wrong !!!";
+          }
+        } else if (userChoice === "BALL") {
+          switch (computerChoice) {
+            case "STUMP":
+              decision = "Won :)";
+              score.WIN++;
+              break;
+            case "BAT":
+              decision = "Lost !!";
+              score.LOST++;
+              break;
+            default:
+              decision = "something went wrong !!!";
+          }
+        } else if (userChoice === "STUMP") {
+          switch (computerChoice) {
+            case "BAT":
+              decision = "Won :)";
+              score.WIN++;
+              break;
+            case "BALL":
+              decision = "Lost !!";
+              score.LOST++;
+              break;
+            default:
+              decision = "something went wrong !!!";
+          }
         } else {
-          computerChoice = "Stump";
-        }
-        return computerChoice;
-      }
-
-      //for decision or result :
-
-      function getResult(userMove, ComputerMove) {
-        //decision or result :
-        let resultMsg;
-        
-        if(userMove===ComputerMove){
-          resultMsg='It is a tie';
-          userScore.tie++;
-        }
-        else if(userMove==='Bat'){
-          if(ComputerMove==='Ball'){
-            resultMsg='User won'
-            userScore.win++;
-            
-          }else if(ComputerMove==='Wicket'){
-            resultMsg='Computer won';
-            userScore.lost++;
-          }else{
-            resultMsg='It is a tie'; //not required becuase we check first if condition but for backup we will use this.
-            userScore.tie++;
-          }
-        }
-        else if(userMove==='Ball'){
-          if(ComputerMove==='Bat'){
-            resultMsg='Computer won';
-            userScore.lost++;
-          }else if(ComputerMove==='Wicket'){
-            resultMsg='User won';
-            userScore.win++;
-          }else{
-            resultMsg='It is a tie';
-            userScore.tie++;
-          }
-        }
-        else{
-          if(ComputerMove==='Ball'){
-            resultMsg='Computer won';
-            userScore.lost++;
-          }else if(ComputerMove==='Bat'){
-            resultMsg='User won';
-            userScore.win++;
-          }else{
-            resultMsg='It is a tie';
-            userScore.tie++;
-          }
+          decision = "something went wrong !!!";
+          console.warn("something unusual happen !");
+          alert("Restart and try again !");
         }
 
-        //here we update the score so we store in local storage :
-        localStorage.setItem('userScore',JSON.stringify(userScore));
-
-        return resultMsg;
-        
-      }
-
-      //alert pop up :
-
-      function showResult(userMove,ComputerMove,resultMsg){
-
-        document.querySelector('#user-move').innerText=userMove||''; //in case of userMove undefined we show blank string (for reset button)
-        document.querySelector('#computer-move').innerText=ComputerMove||'';
-        document.querySelector('#result').innerText=resultMsg||'';
-        document.querySelector('#score').innerText=userScore.displayScore();
-      }
-
-      //reset function :
-      function resetScore(){
-        userScore={
-          win:0,
-          lost:0,
-          tie:0,
-        };
-        
-        userScore.displayScore = function(){
-          return `Won:${this.win} , Lost:${this.lost} , Tie:${this.tie}`;
-        }
-
-        showResult(); //here we need to pass userMove , ComputerMove and resultMsg but we dont pass so we handle this in showResult() method
+        return decision;
       }
     </script>
   </body>
