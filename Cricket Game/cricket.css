@@ -1,56 +1,96 @@
-body {
+.game{
+    position: absolute;
+    top:25%;
+    left:35%;
+}
+
+.heading{
+    font-size: 30px;
+    font-family:cursive;
+    font-weight: 550;
+
     text-align: center;
-  }
+}
 
-  .heading{
-    font-family: "Spicy Rice", serif;
-    font-weight:lighter;
-  }
-  .choice-button{
-    height:100px;
-    width:100px;
-    background-color: #66d281;
-    border:0px;
+.user-button{
+    height: 40px;
+    width: 100px;
+    padding: 2px;
+    margin:7px;
+
+    font-size: 15px;
+    font-family:monospace;
+    font-weight: 500;
+
+    background-color: white;
+
+    border: 1px solid rgb(94, 94, 94);
+    border-radius:6px;
+
+    cursor: pointer;
+
+     box-shadow: 0 0 20px 1px rgba(109, 255, 143, 0.7);
+
+    transition:all 0.2s ease;
+}
+
+.user-button:hover{
+    transform: scale(1.02);
+    border: 2px solid rgb(255, 143, 143);
+
+    box-shadow: 0 0 15px 8px rgb(255, 172, 172);
+}
+
+.user-button:active{
+    transform:scale(1.01);
+    border:2px solid rgb(255, 115, 115);
+
+    box-shadow:0 0 15px 10px rgb(255, 113, 113);
+}
+
+.display{
+    text-align: center;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 20px;
     margin:10px;
-    border-radius: 50px;
-     transition:all 0.2s ease-in-out;
-     box-shadow: 0px 0px 10px rgb(36, 36, 36);
-  }
+    padding: 5px;
 
-  .choice-button:hover{
-    cursor:pointer;
-    transform: scale(1.03);
-    box-shadow: 0px 0px 10px #ae1a1a;
-  }
+    box-shadow:0 0 7px 2px rgb(156, 156, 156);
+}
+.score-board{
+    text-align: left;
+    margin:5px;
+}
 
-  .choice-image{
-    height:75px;
-  }
+.score{
+    font-family:serif;
+    font-weight: 50;
+}
 
-  .reset-button{
-    height:30px;
-    width:150px;
-    background-color: rgb(255, 255, 255) ;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px #1a5027;
-    transition:all 0.2s ease-in-out;
-  }
+.move{
+    background-color: rgb(154, 154, 154);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
 
-  .reset-button:hover{
-    transform: scale(1.03);
-    box-shadow: 0px 0px 10px #751111;
+    display: grid;
+    grid-template-columns:50% 50%;
+    
+}
 
-  }
+.user-move,.computer-move{
+    border: 2px solid white;
+}
 
-  .result-container{
-    width:370px;
-    left:100px;
-    margin:0 auto;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px #a0a0a0;
-    border-radius: 20px;
-    /* font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
-    font-family: "Jura", sans-serif;
-    font-weight: 700;
-  }
+
+.result{
+    background-color: rgb(188, 49, 49);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.restart-game{
+    background-color: white;
+    border:none;
+    cursor: pointer;
+    float: right;
+}
