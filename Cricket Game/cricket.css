@@ -2,6 +2,7 @@
     position: absolute;
     top:25%;
     left:35%;
+    
 }
 
 .heading{
@@ -13,39 +14,45 @@
 }
 
 .user-button{
-    height: 40px;
+    height: 100px;
     width: 100px;
-    padding: 2px;
-    margin:7px;
+    padding: 5px;
+    margin:10px;
 
     font-size: 15px;
     font-family:monospace;
     font-weight: 500;
 
-    background-color: white;
+    background-color: rgb(255, 255, 255);
 
-    border: 1px solid rgb(94, 94, 94);
-    border-radius:6px;
+    /* border: 1px solid rgb(94, 94, 94);
+    border-radius:6px; */
+    border:0px;
+    border-radius: 35px;
 
     cursor: pointer;
 
-     box-shadow: 0 0 20px 1px rgba(109, 255, 143, 0.7);
+     box-shadow: 0 0 20px 1px rgba(48, 217, 79, 0.695);
 
     transition:all 0.2s ease;
 }
 
 .user-button:hover{
     transform: scale(1.02);
-    border: 2px solid rgb(255, 143, 143);
+    /* border: 2px solid rgb(255, 143, 143); becuase i remove the border in parent class*/
 
     box-shadow: 0 0 15px 8px rgb(255, 172, 172);
 }
 
 .user-button:active{
     transform:scale(1.01);
-    border:2px solid rgb(255, 115, 115);
+    /* border:2px solid rgb(255, 115, 115); */
 
     box-shadow:0 0 15px 10px rgb(255, 113, 113);
+}
+
+.choice-image{
+    height: 100px;
 }
 
 .display{
@@ -68,7 +75,7 @@
 }
 
 .move{
-    background-color: rgb(154, 154, 154);
+    background-color: rgb(58, 37, 143);
     border-radius: 10px;
     color: rgb(255, 255, 255);
 
@@ -94,3 +101,4 @@
     cursor: pointer;
     float: right;
 }
+

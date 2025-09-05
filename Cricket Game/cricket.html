@@ -16,9 +16,19 @@
         <p>Cricket Game</p>
       </div>
       <div class="user-choice">
-        <button class="user-button" onclick="playGame('BAT')">BAT</button>
-        <button class="user-button" onclick="playGame('BALL')">BALL</button>
-        <button class="user-button" onclick="playGame('STUMP')">STUMP</button>
+        <button class="user-button" onclick="playGame('BAT')" aria-label="Bat">
+          <img class="choice-image" src="./images/bat.png" alt="Bat Image" />
+        </button>
+        <button class="user-button" onclick="playGame('BALL')">
+          <img class="choice-image" src="./images/ball.png" alt="Ball Image" />
+        </button>
+        <button class="user-button" onclick="playGame('STUMP')">
+          <img
+            class="choice-image"
+            src="./images/stump.png"
+            alt="Stump Image"
+          />
+        </button>
       </div>
       <div class="display">
         <span class="restart-game" onClick="restartScore()">
